@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+*{
+  margin:0; 
+  padding:0; 
+  box-sizing:border-box;
+}
+
+body{
+  width:100%;
+  overflow: none;
+  overflow-y: scroll;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 120%;
+}
+
+
+header{
+  height:15vh;
+}
+
+header p{
+  letter-spacing: 3px;
+  height: 15vh;
+  display: grid;
+  justify-content: left;
+  align-content: center;
+  margin-left: 5%;
+}
+
+
+footer{
+  height: 5vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  color: rgb(199, 199, 199);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+main{
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  height:78vh;
+}
+
+.text-part img{
+  margin-top: 15vh;
+  margin-left: 15vw;
+  width: 45%;
+}
+
+.text-part p{
+  background-color: white;
+  width: 26%;
+  height: 25%;
+  position: absolute;
+  top: 45%;
+  left: 26%;
+  font-size: 2em;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.login-part {
+  width: 420px;
+  padding: 2% 0 0;
+  margin: auto;
+  z-index: 10;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 420px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  overflow-y:hidden;
+}
+
+.form input {
+  outline: 0;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.form button {
+  text-transform: uppercase;
+  outline: 0;
+  background: #4d81e4;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #3d67b6;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.form .message a {
+  color: #4d81e4;
+  text-decoration: none;
+}
+
+.form h1{
+  text-align: left;
+  margin-bottom:30px;
+  font-size:18px;
+  font-weight:600;
+  color:#4d81e4;
+}
+
+.form .register-form {
+  display: none;
+}

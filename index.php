@@ -28,7 +28,10 @@ require_once __DIR__.'/top.php';
             <div class="card">
             <h3>Card 2</h3>
             <p>Some text</p>
-            <p>Some text</p>
+            <p>Sonn
+            me text</p>
+
+
             </div>
         </div>
         

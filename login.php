@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/login.css">
     <title>db&#8594;UGotThis</title>
 </head>
 <body>
-  <header>
-    <div>
-     <p>db&#8594;UGotThis</p>
-    </div>
-  </header>
+  <nav>
+    <div id="logoContainer"><a href="#"> db&#8594;UGotThis</a></div>
+  </nav>
+
 
   <main>
     <div class="text-part">

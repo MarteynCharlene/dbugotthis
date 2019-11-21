@@ -15,35 +15,11 @@ body{
   font-size: 120%;
 }
 
-
-header{
-  height:15vh;
-}
-
-header p{
-  letter-spacing: 3px;
-  height: 15vh;
-  display: grid;
-  justify-content: left;
-  align-content: center;
-  margin-left: 5%;
-}
-
-
-footer{
-  height: 5vh;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  color: rgb(199, 199, 199);
-  font-size: 11px;
-  font-weight: 400;
-}
-
 main{
   display: grid; 
   grid-template-columns: 1fr 1fr;
-  height:78vh;
+  height:92vh;
+  padding: 15vh 0; 
 }
 
 .text-part img{

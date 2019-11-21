@@ -1,18 +1,22 @@
+main{
+  height:92vh;
+  padding: 15vh 0; 
+}
+
 .column {
-    float: left;
-    width: 25%;
-    padding: 0 10px;
+  width: 100%;
+  padding: 10px 25px;
+  cursor: pointer;
   }
   
   /* Remove extra left and right margins, due to padding */
-  .row {margin: 0 -5px;}
+  .row {
+    max-width: 50%;
+    margin: auto;
+    display: flex;
+    margin-top: 13%;
+    }
   
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
   
   /* Responsive columns */
   @media screen and (max-width: 600px) {

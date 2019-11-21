@@ -12,10 +12,10 @@
 <body>
 
     <nav>
-        <div id="logoContainer"><a href="feed.php"> db&#8594;UGotThis</a></div>
+        <div id="logoContainer">db&#8594;UGotThis</div>
 
         <div class="pullRight">
-            <a href="#">forum</a>
+            <a href="forum.php">forum</a>
             <a href="index.php" style="margin-left:20px">profile</a>
             <a href="apis-private/api-logout.php" id="logoutBtn">log out</a>        
         </div>

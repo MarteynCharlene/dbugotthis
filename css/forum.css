@@ -1,0 +1,43 @@
+main{
+    height:92vh;
+    padding: 15vh 0; 
+  }
+
+  .forum {
+    border-spacing: 0;
+    width: 90%;
+    margin: auto;
+    border: 1px solid #ddd;
+    font-size:15px;
+  }
+
+  .forum .header{
+    background-color:gray;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 16px;
+  }
+
+  /* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Style the active class (and buttons on mouse-over) */
+  .active, .btn:hover {
+    background-color: #666;
+    color: white;
+  }
+
+  #pagination{
+    text-align: center;
+    padding: 20px;
+  }
+
+  tr:nth-child(even){background-color: #f2f2f2}

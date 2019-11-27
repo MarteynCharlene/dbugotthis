@@ -25,7 +25,7 @@ try{
     }
 
     session_start();
-    $_SESSION['sUserId'] = $aRows[0]->id;
+    $_SESSION['sUserId'] = $aRows[0]->user_id;
     header("Location: ../index.php");
 
 

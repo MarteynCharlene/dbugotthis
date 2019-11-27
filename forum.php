@@ -16,22 +16,24 @@ require_once __DIR__.'/top.php';
 
 
 <main>
-
+<h1>Forum</h1>
+<div id="addTopicBtn"><a href="#">Add a new topic</a></div>
 <table class="forum">
    <tr class="header">
-      <th class="main">Sujet</th>
-      <th class="sub-info w10">Messages</th>
-      <th class="sub-info w20">Dernier message</th>
-      <th class="sub-info w20">Création</th>
+      <th class="main" style="width:40%; text-align:left;">Topic</th>
+      <th class="sub-info" style="width:25%">Author</th>
+      <th class="sub-info">number of messages</th>
+      <th class="sub-info" style="width:25%">Last reply</th>
    </tr>
 
    <tr>
       <td class="main">
          <h4><a href="">this is a test</a></h4>
+         <p>Caramels soufflé gingerbread. Macaroon cookie ice cream. Sweet biscuit powder dessert. Fruitcake powder candy.</p>
       </td>
-      <td class="sub-info">4083495</td>
-      <td class="sub-info">25.12.2015 à 18h07<br />de PrimFX</td>
-      <td class="sub-info">25.12.2015 à 18h07<br />par charlene</td>
+      <td class="sub-info">charlene</td>
+      <td class="sub-info">21</td>
+      <td class="sub-info">25.12.2015 at 18h07<br />by charlene</td>
    </tr>
 
    <tr>

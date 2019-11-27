@@ -1,18 +1,34 @@
 main{
-    height:92vh;
-    padding: 15vh 0; 
+    background-color: #f1f1f1;
+    padding: 15vh 0;
   }
 
+  main h1{
+    width: 60%;
+    margin: auto;
+    padding: 3% 0 1% 0;
+}
+#addTopicBtn{
+    width:12%;
+    margin-left:20%;
+    padding: 15px;
+    border: 1px solid #4d81e4;
+    text-align: center;
+    margin-bottom:3%;
+}
+
   .forum {
-    border-spacing: 0;
-    width: 90%;
+    width: 60%;
     margin: auto;
     border: 1px solid #ddd;
     font-size:15px;
+    border-radius:5px;
+    border-collapse: collapse;
   }
 
   .forum .header{
-    background-color:gray;
+    background-color: #666;
+    color: #fff;
   }
   
   th, td {
@@ -20,6 +36,18 @@ main{
     padding: 16px;
   }
 
+  td{
+    border: 1px solid #ddd;
+  }
+
+  tr{
+      background-color: white;
+  }
+  tr:hover{
+    background-color: #f5f6f7;
+  }
+
+  td:first-child { text-align: left; }
   /* Style the buttons */
 .btn {
     border: none;
@@ -40,4 +68,7 @@ main{
     padding: 20px;
   }
 
-  tr:nth-child(even){background-color: #f2f2f2}
+  a{
+      text-decoration: none;
+      color:black;
+  }

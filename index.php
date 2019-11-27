@@ -37,7 +37,5 @@ require_once __DIR__.'/top.php';
 
   </main>
 
-  <footer>© Charlene Marteyn || KEA PROJECT 2019 </footer>
-
 <?php
 require_once __DIR__.'/bottom.php'; 

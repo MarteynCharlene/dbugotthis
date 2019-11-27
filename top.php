@@ -17,7 +17,7 @@
         <div class="pullRight">
             <a href="forum.php">forum</a>
             <a href="index.php" style="margin-left:20px">profile</a>
-            <a href="apis-private/api-logout.php" id="logoutBtn">log out</a>        
+            <a href="apis/api-logout.php" id="logoutBtn">log out</a>        
         </div>
     </nav>
 

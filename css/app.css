@@ -23,6 +23,8 @@ nav{
     padding: 0px 10%;
     color:black;
     z-index:1;
+    background-color: white;
+    border-bottom: 1px solid rgba(17,17,17,0.08);
 }
 
 nav a{

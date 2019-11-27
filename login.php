@@ -23,7 +23,7 @@
     <div class="login-part">
 
       <div class="form">
-        <form class="register-form" method="POST" action="apis-private/api-signup.php">
+        <form class="register-form" method="POST" action="apis/api-signup.php">
           <h1>CREATE ACCOUNT</h1>
           <input name="txtSignupUserName" type="text" placeholder="USERNAME"/>
           <input name="txtSignupEmail" type="text" placeholder="EMAIL ADDRESS"/>

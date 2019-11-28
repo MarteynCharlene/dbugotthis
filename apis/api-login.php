@@ -12,22 +12,20 @@ if( strlen($sPassword) < 4 ){ sendResponse(0, __LINE__, "password should be more
 if( strlen($sPassword) > 50 ){ sendResponse(0, __LINE__, "password should be less than 50 characters"); }
 
 try{
-    $stmt = $db->prepare('SELECT COUNT(*) as total FROM users WHERE email=:sEmail AND password = :sPassword');
-    $stmt->bindValue(':sEmail', "$sEmail"); 
-    $stmt->bindValue(':sPassword', "$sPassword");
+    $stmt = $db->prepare('SELECT COUNT(*) as total, user_id FROM users WHERE email=:sEmail AND password = :sPassword');
+    $stmt->bindValue(':sEmail', $sEmail); 
+    $stmt->bindValue(':sPassword', $sPassword);
     $stmt->execute();
     $aRows = $stmt->fetchAll();
     
-
     if($aRows[0]->total == 0){
         header("Location: ../login.php");
         exit;
     }
 
     session_start();
-    $_SESSION['sUserId'] = $aRows[0]->user_id;
+    $_SESSION['iUserId'] = $aRows[0]->user_id;
     header("Location: ../index.php");
-
 
 } catch(PDOEXception $ex){
     echo $ex;

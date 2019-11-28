@@ -33,7 +33,7 @@ try{
     $stmt->execute();
     $iUserId =$db->lastInsertId(); // get the id for the user
 
-    header('Location: ../index.php');
+    header('Location: ../login.php');
 } catch (PDOEXception $ex){
     echo $ex;
 }

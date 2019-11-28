@@ -12,7 +12,7 @@
 <body>
 
     <nav>
-        <div id="logoContainer">db&#8594;UGotThis</div>
+        <div id="logoContainer"><a href="index.php">db&#8594;UGotThis</a></div>
 
         <div class="pullRight">
             <a href="forum.php">forum</a>

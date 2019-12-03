@@ -1,0 +1,25 @@
+main{
+    background-color: #f1f1f1;
+    padding: 15vh 0;
+  }
+
+main div{
+    width: 60%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+
+main div img{
+    width: 70px;
+    height:70px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin:10px;
+}
+
+main div p{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}

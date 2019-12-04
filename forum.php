@@ -11,39 +11,6 @@ $sInjectCss = '<link rel="stylesheet" href="css/forum.css">';
 
 require_once __DIR__.'/connect.php';
 require_once __DIR__.'/top.php'; 
-
-/* ----------------------------------- ADD A NEW TOPIC IN THE FORUM ---------------------------------- */
-
-if(isset($_POST['BtnSubmitNewSubject'])) {
-   if(isset($_POST['txtNewSubject'],$_POST['txtNewContent'])) {
-      $sSubject = htmlspecialchars($_POST['txtNewSubject']);
-      $sContent = htmlspecialchars($_POST['txtNewContent']);
-      if(!empty($sSubject) AND !empty($sContent)) {
-         if(strlen($sSubject) <= 100) {
-            if(isset($_POST['cbEmailNotif'])) {
-               $email_notif = 1;
-            } else {
-               $email_notif = 0;
-            }
-            $stmt = $db->prepare('INSERT INTO forum_subjects VALUES (null, :iCreatorId, :sSubject, :sContent, NOW(), :sEmailNotification)');
-            $stmt->bindValue(':iCreatorId', $iUserId);
-            $stmt->bindValue(':sSubject', $sSubject);
-            $stmt->bindValue(':sContent', $sContent);
-            $stmt->bindValue(':sEmailNotification', $email_notif);
-            $stmt->execute();
-         } else {
-            $error = "Your subject cannot be longer than 100 characters";
-         }
-      } else {
-         $error = "Please complete all required fields.";
-      }
-   }
-}
-
-/* ----------------------------------- ADD A NEW TOPIC IN THE FORUM ---------------------------------- */
-
-
-
 ?>
 
 
@@ -61,14 +28,13 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
       </tr>
 
    <?php
-      $stmt = $db->prepare('select fs.subject_id, fs.subject, fs.content, IFNULL(c, 0) as totalMessages, users.username as authorOfTheSubject, IFNULL(u.username, users.username) as usernameOfLastReply from forum_subjects as fs left join (select count(*) as c, forum_subject_messages.subject_fk as subjectID from forum_subject_messages group by forum_subject_messages.subject_fk) as fsm on fsm.subjectID = fs.subject_id left join (select * from forum_subject_messages where message_id in (SELECT max(message_id) FROM forum_subject_messages group by subject_fk)) as fsmml on fsmml.subject_fk = fs.subject_id left join users as u on u.user_id = fsmml.user_fk left join users on users.user_id = fs.user_fk');      $stmt->execute();
+      $stmt = $db->prepare('select fs.subject_id, fs.subject, fs.content, IFNULL(c, 0) as totalMessages, users.username as authorOfTheSubject, IFNULL(u.username, users.username) as usernameOfLastReply from forum_subjects as fs left join (select count(*) as c, forum_subject_messages.subject_fk as subjectID from forum_subject_messages group by forum_subject_messages.subject_fk) as fsm on fsm.subjectID = fs.subject_id left join (select * from forum_subject_messages where message_id in (SELECT max(message_id) FROM forum_subject_messages group by subject_fk)) as fsmml on fsmml.subject_fk = fs.subject_id left join users as u on u.user_id = fsmml.user_fk left join users on users.user_id = fs.user_fk LIMIT 10');      $stmt->execute();
       $aRows = $stmt->fetchAll();
       foreach( $aRows as $jRow ){
-         if(isset($jRow->usernameOfLastReply)){
             echo '
             <tr>
                <td class="main">
-                  <h4><a href="">'.$jRow->subject.'</a></h4>
+                  <h4><a href="apis/api-get-subject.php?subject='.$jRow->subject_id.'">'.$jRow->subject.'</a></h4>
                   <p>'.$jRow->content.'</p>
                </td>
                <td class="sub-info">'.$jRow->authorOfTheSubject.'</td>
@@ -76,20 +42,6 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
                <td class="sub-info">25.12.2015 at 18h07<br />by '.$jRow->usernameOfLastReply.'</td>
             </tr>
             '; 
-            } else {
-               echo '
-               <tr>
-               <td class="main">
-                  <h4><a href="#">'.$jRow->subject.'</a></h4>
-                  <p>'.$jRow->content.'</p>
-               </td>
-               <td class="sub-info">'.$jRow->authorOfTheSubject.'</td>
-               <td class="sub-info">'.$jRow->totalMessages.'</td>
-               <td class="sub-info"> x </td>
-               </tr>
-               
-               ';
-            }
             
          }
 

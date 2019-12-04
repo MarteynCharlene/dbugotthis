@@ -23,3 +23,18 @@ main div p{
     margin: 10px;
     border: 1px solid black;
 }
+
+main div p span{
+    font-weight: bold;
+}
+
+#frmForumReply{
+    margin: 10px;
+}
+
+#frmForumReply textarea{
+    width: 100%;
+    border: 1px solid black;
+    padding:10px;
+    resize: none;
+}

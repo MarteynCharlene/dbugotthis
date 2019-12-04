@@ -54,12 +54,46 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
 
    <table class="forum">
       <tr class="header">
-         <th class="main" style="width:40%; text-align:left;">Topic</th>
-         <th class="sub-info" style="width:25%">Author</th>
-         <th class="sub-info">number of messages</th>
-         <th class="sub-info" style="width:25%">Last reply</th>
+         <th class="main" style="width:40%; text-align:left;">Subjects</th>
+         <th class="sub-info" style="width:20%">Author</th>
+         <th class="sub-info">number of replies</th>
+         <th class="sub-info" style="width:20%">Latest message</th>
       </tr>
 
+   <?php
+      $stmt = $db->prepare('select fs.subject_id, fs.subject, fs.content, IFNULL(c, 0) as totalMessages, users.username as authorOfTheSubject, IFNULL(u.username, users.username) as usernameOfLastReply from forum_subjects as fs left join (select count(*) as c, forum_subject_messages.subject_fk as subjectID from forum_subject_messages group by forum_subject_messages.subject_fk) as fsm on fsm.subjectID = fs.subject_id left join (select * from forum_subject_messages where message_id in (SELECT max(message_id) FROM forum_subject_messages group by subject_fk)) as fsmml on fsmml.subject_fk = fs.subject_id left join users as u on u.user_id = fsmml.user_fk left join users on users.user_id = fs.user_fk');      $stmt->execute();
+      $aRows = $stmt->fetchAll();
+      foreach( $aRows as $jRow ){
+         if(isset($jRow->usernameOfLastReply)){
+            echo '
+            <tr>
+               <td class="main">
+                  <h4><a href="">'.$jRow->subject.'</a></h4>
+                  <p>'.$jRow->content.'</p>
+               </td>
+               <td class="sub-info">'.$jRow->authorOfTheSubject.'</td>
+               <td class="sub-info">'.$jRow->totalMessages.'</td>
+               <td class="sub-info">25.12.2015 at 18h07<br />by '.$jRow->usernameOfLastReply.'</td>
+            </tr>
+            '; 
+            } else {
+               echo '
+               <tr>
+               <td class="main">
+                  <h4><a href="#">'.$jRow->subject.'</a></h4>
+                  <p>'.$jRow->content.'</p>
+               </td>
+               <td class="sub-info">'.$jRow->authorOfTheSubject.'</td>
+               <td class="sub-info">'.$jRow->totalMessages.'</td>
+               <td class="sub-info"> x </td>
+               </tr>
+               
+               ';
+            }
+            
+         }
+
+         ?>
       <tr>
          <td class="main">
             <h4><a href="#">this is a test</a></h4>

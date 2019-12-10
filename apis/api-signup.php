@@ -31,7 +31,6 @@ try{
     $stmt->bindValue(':sEmail', $sEmail);
     $stmt->bindValue(':sPassword', $sPassword);
     $stmt->execute();
-    $iUserId =$db->lastInsertId(); // get the id for the user
 
     header('Location: ../login.php');
 } catch (PDOEXception $ex){

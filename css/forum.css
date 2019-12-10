@@ -72,3 +72,12 @@ main{
       text-decoration: none;
       color:black;
   }
+
+  .pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
+
+  #btnShowAddSubject{
+    display: none;
+  }

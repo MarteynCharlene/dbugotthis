@@ -172,4 +172,6 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
 </form> -->
 
 <?php
+
+$sLinkToScript = '<script src="js/forum.js"></script>';
 require_once __DIR__.'/bottom.php'; 

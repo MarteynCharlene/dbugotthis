@@ -14,6 +14,19 @@ $getSubjectId = $_GET['subject'];
 require_once __DIR__.'/connect.php';
 require_once __DIR__.'/top.php'; 
 
+if(isset($_POST['txtSubjectAnswerSubmit'], $_POST['txtSubjectMessage'])){
+    if(!empty($_POST['txtSubjectMessage'])){
+        $sAnswer = htmlspecialchars($_POST['txtSubjectMessage']);
+
+        $stmt = $db->prepare('INSERT INTO forum_subject_messages VALUES (null, :iSubjectId, :iUserId, NOW(), :sAnswer)');
+        $stmt->bindValue(':iSubjectId', $getSubjectId);
+        $stmt->bindValue(':iUserId', $iUserId);
+        $stmt->bindValue(':sAnswer', $sAnswer);
+        $stmt->execute();
+        header('Location: subject.php');
+    } 
+}
+
 ?>
 
 <main>
@@ -52,15 +65,12 @@ require_once __DIR__.'/top.php';
     <div class="mt20">
         <img src="img/test.png">
         <form id="frmForumReply" name="frmForumReply" method="POST">
-        <input type="hidden" name="iSubjectId" value="<?= $iUserId ?>">
-            <input type="hidden" name="iSubjectId" value="<?= $getSubjectId ?>">
-            <textarea name="sSubjectmessage" rows="10" cols="30"></textarea>
-            <input type="submit" value="Comment">
+            <textarea name="txtSubjectMessage" rows="10" cols="30"></textarea>
+            <input type="submit" name="txtSubjectAnswerSubmit" value="Comment">
         </form>
     </div>
 
 </main>
 
-<?php
-$sLinkToScript = '<script src="js/subject.js"></script>';
+ <?php
 require_once __DIR__.'/bottom.php'; 

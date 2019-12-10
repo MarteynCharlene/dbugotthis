@@ -1,8 +1,7 @@
 $('#frmForumReply').submit(function(){
-    console.log($('#frmForumReply').serialize());
     $.ajax({
         method:"POST",
-        url:"apis/api-add-reply.php",
+        url:"../apis/api-add-reply.php",
         data: $('#frmForumReply').serialize(),
         dataType:"JSON"
     }).

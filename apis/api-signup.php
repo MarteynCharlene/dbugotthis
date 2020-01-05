@@ -26,7 +26,8 @@ if ($sPassword != $sConfirmPassword ){sendResponse(0, __LINE__);}
 //$PasswordHash = password_hash($sPassword, PASSWORD_DEFAULT);
 
 try{
-    $stmt = $db->prepare('INSERT INTO users VALUES (null, :sUserName, :sEmail, :sPassword, CURRENT_TIMESTAMP)');
+    $stmt = $db->prepare('INSERT INTO users 
+    VALUES (null, :sUserName, :sEmail, :sPassword, CURRENT_TIMESTAMP)');
     $stmt->bindValue(':sUserName', $sUserName);
     $stmt->bindValue(':sEmail', $sEmail);
     $stmt->bindValue(':sPassword', $sPassword);

@@ -16,7 +16,7 @@ require_once __DIR__.'/top.php';
 /* ----------------------------------- ADD A NEW TOPIC IN THE FORUM ---------------------------------- */
 
 $SubjectsPerPage = 10;
-$stmt = $db->prepare('SELECT subject_id FROM forum_subjects');
+$stmt = $db->prepare('SELECT subject_id FROM forumsubjects');
 $stmt->execute();
 $TotalSubjects = $stmt->rowCount();
 
@@ -42,7 +42,7 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
             } else {
                $email_notif = 0;
             }
-            $stmt = $db->prepare('INSERT INTO forum_subjects VALUES (null, :iCreatorId, :sSubject, :sContent, NOW(), :sEmailNotification)');
+            $stmt = $db->prepare('INSERT INTO forumsubjects VALUES (null, :iCreatorId, :sSubject, :sContent, NOW(), :sEmailNotification)');
             $stmt->bindValue(':iCreatorId', $iUserId);
             $stmt->bindValue(':sSubject', $sSubject);
             $stmt->bindValue(':sContent', $sContent);
@@ -67,29 +67,17 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
    <div id="addTopicBtn">Add a new subject</div>
 
    <div id="btnShowAddSubject">
-      <form method="POST">
-         <table>
-            <tr>
-               <td>Subject</td>
-               <td><input type="text" name="txtNewSubject" size="100" maxlength="100" placeholder="Your subject..."></td>
-            </tr>
-            <tr>
-               <td>Message</td>
-               <td><textarea name="txtNewContent" maxlength="500" placeholder="Describe your issue..."></textarea></td>
-            </tr>
-            <tr>
-               <td>Me notifier des réponses par mail</td>
-               <td><input type="checkbox" name="cbEmailNotif" /></td>
-            </tr>
-            <tr>
-               <td colspan="2"><input type="submit" name="BtnSubmitNewSubject" value="Submit"></td>
-            </tr>
-            <?php if(isset($error)) { ?>
-            <tr>
-               <td colspan="2"><?= $error ?></td>
-            </tr>
-            <?php } ?>
-         </table>
+      <form id="addSubjectForm" method="POST">
+         <span class="close">&times;</span>
+         <h2>Add a new subject</h2>
+         <label style="padding-top:20px;" for="txtNewSubject">Title</label>
+         <input type="text" id="txtNewSubject" name="txtNewSubject" size="100" maxlength="100" placeholder="Your subject...">
+         <label for="txtNewContent">Subject</label>
+         <textarea id="txtNewContent" name="txtNewContent" placeholder="Write something.." style="height:200px"></textarea>
+         <label for="notification" class="checkboxLabel">
+            <input id="notification" type="checkbox" name="cbEmailNotif"> Notify me by email when someone replies
+         </label>
+         <input type="submit" name="BtnSubmitNewSubject" value="Submit">
       </form>
     </div>
                
@@ -103,19 +91,19 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
       </tr>
 
    <?php
-      $stmt = $db->prepare('select fs.subject_id, fs.subject, fs.content, IFNULL(c, 0) as totalMessages, users.username as authorOfTheSubject, IFNULL(u.username, users.username) as usernameOfLastReply from forum_subjects as fs left join (select count(*) as c, forum_subject_messages.subject_fk as subjectID from forum_subject_messages group by forum_subject_messages.subject_fk) as fsm on fsm.subjectID = fs.subject_id left join (select * from forum_subject_messages where message_id in (SELECT max(message_id) FROM forum_subject_messages group by subject_fk)) as fsmml on fsmml.subject_fk = fs.subject_id left join users as u on u.user_id = fsmml.user_fk left join users on users.user_id = fs.user_fk LIMIT '.$start.','.$SubjectsPerPage);      
+      $stmt = $db->prepare('select fs.subject_id, fs.subject, fs.content, IFNULL(c, 0) as totalMessages, users.username as authorOfTheSubject, IFNULL(u.username, users.username) as usernameOfLastReply from forumsubjects as fs left join (select count(*) as c, forum_subject_messages.subject_fk as subjectID from forum_subject_messages group by forum_subject_messages.subject_fk) as fsm on fsm.subjectID = fs.subject_id left join (select * from forum_subject_messages where message_id in (SELECT max(message_id) FROM forum_subject_messages group by subject_fk)) as fsmml on fsmml.subject_fk = fs.subject_id left join users as u on u.user_id = fsmml.user_fk left join users on users.user_id = fs.user_fk LIMIT '.$start.','.$SubjectsPerPage);      
       $stmt->execute();
       $aRows = $stmt->fetchAll();
       foreach( $aRows as $jRow ){
             echo '
             <tr>
                <td class="main">
-                  <h4><a href="subject.php?subject='.$jRow->subject_id.'">'.$jRow->subject.'</a></h4>
+                  <h3><a href="subject.php?subject='.$jRow->subject_id.'">'.$jRow->subject.'</a></h3>
                   <p>'.$jRow->content.'</p>
                </td>
-               <td class="sub-info">'.$jRow->authorOfTheSubject.'</td>
+               <td class="sub-info username">'.$jRow->authorOfTheSubject.'</td>
                <td class="sub-info">'.$jRow->totalMessages.'</td>
-               <td class="sub-info">25.12.2015 at 18h07<br />by '.$jRow->usernameOfLastReply.'</td>
+               <td class="sub-info">25.12.2015 at 18h07<br />by <span class="username">'.$jRow->usernameOfLastReply.'</span></td>
             </tr>
             '; 
             
@@ -140,36 +128,6 @@ if(isset($_POST['BtnSubmitNewSubject'])) {
 </div>
 
 </main>
-<!--
-
-<form method="POST">
-   <table>
-      <tr>
-         <th colspan="2">Nouveau Topic</th>
-      </tr>
-      <tr>
-         <td>Sujet</td>
-         <td><input type="text" name="tsujet" size="70" maxlength="70" /></td>
-      </tr>
-      <tr>
-         <td>Message</td>
-         <td><textarea name="tcontenu"></textarea></td>
-      </tr>
-      <tr>
-         <td>Me notifier des réponses par mail</td>
-         <td><input type="checkbox" name="tmail" /></td>
-      </tr>
-      <tr>
-         <td colspan="2"><input type="submit" name="tsubmit" value="Poster le Topic" /></td>
-      </tr>
-      <?php if(isset($terror)) { ?>
-      <tr>
-         <td colspan="2">test</td> 
-          <td colspan="2"><?= $terror ?></td> 
-      </tr>
-      <?php } ?> 
-   </table>
-</form> -->
 
 <?php
 

@@ -32,6 +32,10 @@ nav a{
     text-decoration: none;
 }
 
+nav a:hover{
+    text-decoration: none;
+}
+
 #logoContainer{
     display: flex;
     align-items: center;
@@ -41,7 +45,7 @@ nav a{
 
 #logoutBtn{
     margin-left:20px;
-    border:1px solid black; 
+    border:1px solid #4d81e4; 
     padding:10px;
 }
 
@@ -55,6 +59,10 @@ footer{
     font-weight: 400;
 }
 
+.username{
+    color:#4d81e4;
+    margin-bottom:10px;
+}
 /*********************/ 
 
 .pullRight{

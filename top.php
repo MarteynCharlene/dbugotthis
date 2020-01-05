@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/app.css">
     <?= $sInjectCss ?? '' ?>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>db&#8594;UGotThis</title>
 </head>
 <body>
@@ -15,8 +16,9 @@
         <div id="logoContainer"><a href="index.php">db&#8594;UGotThis</a></div>
 
         <div class="pullRight">
-            <a href="forum.php">forum</a>
-            <a href="index.php" style="margin-left:20px">profile</a>
+            <a href="index.php">quiz</a>
+            <a href="forum.php" style="margin-left:20px">forum</a>
+            <a href="profile.php" style="margin-left:20px">profile</a>
             <a href="apis/api-logout.php" id="logoutBtn">log out</a>        
         </div>
     </nav>

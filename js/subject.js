@@ -12,4 +12,11 @@ $('#frmForumReply').submit(function(){
       console.log(e);
         console.log('error')
     })
-}) 
+})  
+
+$(document).ready(function(){
+    $("#updateMessageBtn").click(function(){
+      $("#frmUpdateForm").toggle();
+      $("#userUpdateFormImg").toggle();
+    });
+});
